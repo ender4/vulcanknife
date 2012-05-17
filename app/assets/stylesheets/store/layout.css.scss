@@ -1,0 +1,284 @@
+$c-prim: white;
+$c-sec: #00ADEE;
+$c-ter: #EEAD00;
+$bg-prim: white;
+$bg-sec: #336699;
+$bg-ter: #333333;
+$bg-quar: #224466;
+$br-prim: #999999;
+$br-sec: #00ADEE;
+
+
+$light-main: black;
+$light-alt: #00ADEE;
+$light-bg: white;
+$light-border: 1px solid #999;
+
+$dark-main: white;
+$dark-alt: #00ADEE;
+$dark-bg: #333;
+$dark-border: 1px solid #666;
+
+$image-product-height: 240px;
+
+$selected-color: #EEAD00;
+
+@mixin rounded($a: 10px, $b: 10px, $c: 10px, $d: 10px) {
+  border-radius: $a $b $c $d;
+  -moz-border-radius: $a $b $c $d;
+  -webkit-border-radius: $a $b $c $d;
+}
+
+/*@mixin rounded($radius: 10px) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}*/
+
+@mixin selected {
+  color: $selected-color !important;
+}
+
+@mixin border($c: $br-prim) {
+  border: 1px solid $c;
+}
+
+a {
+  text-decoration: none;
+  
+  &:hover, &:focus, &:active {
+    color: $c-ter;
+  }
+  &:link, &:visited {
+    color: $c-sec;
+  }
+}
+
+body {
+  /*background: url('body-bg-01.png') repeat-x scroll left top $bg-prim;*/
+}
+
+#header-wrapper {
+  background: $bg-ter;
+}
+
+#banner-wrapper {
+  background: $bg-sec;
+}
+
+#bannernav-wrapper {
+  background: $bg-quar;
+}
+
+#content-wrapper {
+  background: $bg-prim;
+}
+
+#footer-wrapper {
+  background: $bg-ter;
+}
+
+#header {
+  display: block;
+  height: 40px;
+  vertical-align: bottom;
+  padding-top: 20px;
+  margin: 0px;
+  
+  & > #logo {
+    font-weight: bold;
+    font-size: 2em;
+    margin-right: 20px;
+  
+    & > .logo-v {
+      color: $c-ter;
+    }
+    
+    & > .logo-k {
+      color: $c-sec;
+    }
+  }
+    
+  & > #logo, & > form, & > form > select, & > form > input, & > nav > a {
+    display: inline;
+    float: left;
+    clear: none;
+  }
+  
+  & > nav {
+    display: inline;
+    float: right;
+    clear: none;
+  }
+    
+  & > form {
+    & > select#taxon {
+      @include rounded(10px, 0px, 0px, 10px);
+      cursor: pointer;
+    }
+    
+    & > input[type='submit'] {
+      @include rounded(0px, 10px, 10px, 0px);
+      @include border;
+      padding-left: 5px;
+      width: 25px;
+      background:  url('mag_icon.png') no-repeat scroll right center white;
+      text-indent: -9999px;
+      cursor: pointer;
+    }
+    
+    & > *:hover, & > *:focus, & > input[type='submit']:focus, & > input[type='submit']:hover {
+      @include border($br-sec);
+    }
+    
+    & > #keywords {
+      width: 150px;
+    }
+  }
+
+  & > nav {
+    font-size: 1.5em;
+    
+    & > a {
+      padding-left: 20px;
+    }
+    
+    & > a.products {
+      &:link, &:visited {
+        color: $c-prim;
+      }
+    }
+    
+    /*& > a.login.account, & > a.empty, & > a.full {
+      &:link, &:visited {
+        color: $light-alt;
+      }
+    }
+    
+    & > a {
+      &:hover, &:focus, &:active {
+        color: $selected-color;
+      }
+    }*/
+  }
+}
+
+#banner {
+  clear: both;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  background: transparent;
+  height: 170px;
+    
+  & > * {
+    display: inline;
+    float: left;
+    width: 480px;
+  }
+  
+  & > #banner-text > h1 {
+    color: $c-prim;
+    text-shadow: 0px 0px 10px black;
+    padding-left: 40px;
+    padding-top: 20px;
+  }
+}
+
+#footer-wrapper {
+  background-color: $bg-ter;
+  
+  & #footer {
+    /*background-color: $bg-ter;*/
+    color: $c-prim;
+    width: 960px;
+    display: block;
+    position: relative;
+    background: none repeat scroll 0 0 transparent;
+    vertical-align: baseline;
+    border: none;
+    margin-bottom: 0px;
+  }
+}
+
+/*[data-hook='main-nav-bar'], #main-nav-bar[data-hook] {
+  border: none;
+  & > li {
+    padding-left: 5px;
+    padding-right: 5px;
+    
+  }
+  & > .not, & > .current {
+    border-left: $light-border;
+  }
+  
+  & > .current > a {
+    &, &:link, &:visited {
+      color: $selected-color !important;
+    }
+    &:hover, &:focus, &:active {
+      color: $dark-alt !important;
+    }
+  }
+}*/
+
+[data-hook='wrapper'], #wrapper[data-hook] {
+  background-color: $bg-prim;
+  padding: 5px;
+}
+
+.flash {
+/*  @include rounded(5px);*/
+}
+
+[data-hook='main-image'], #main-image[data-hook] {
+  height: $image-product-height;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+[data-hook='taxonomies'], #taxonomies[data-hook] {
+
+  & > a.toggle > h6 {
+    background: url('button_minus_blue_20x20.png') no-repeat scroll right center transparent;
+
+  } 
+
+  & > a.toggle.plus > h6 {
+    background: url('button_plus_blue_20x20.png') no-repeat scroll right center transparent;
+  }
+  
+  & > a, & > a > h6, & > a:focus, & > a:focus > h6, & > a:hover, & > a:hover > h6, & > a:active, & > a:active > h6 {
+    /*border-bottom: 1px dotted #DEDEDE !important;*/
+    outline: none;
+    border-bottom: 1px dotted #DEDEDE;
+  }
+}
+  
+/*a:focus, a:focus > h6, a:hover, a:hover > h6, a:active, a:active > h6 {
+  @include selected;
+}*/
+
+nav.pagination {
+  display: inline;
+  float: left;
+  clear: both;
+}
+
+
+/*
+[data-hook='top-nav-bar'], #top-nav-bar[data-hook] {
+  float: right;
+  display: inline;
+  margin: 0;
+}
+
+[data-hook='search-bar'], #search-bar[data-hook] {
+  clear: both;
+}
+
+[data-hook='nav-bar'] > li, #nav-bar[data-hook] > li {
+  float: left;
+}*/
+
+

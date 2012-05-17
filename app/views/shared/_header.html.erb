@@ -1,0 +1,20 @@
+<header id="header" data-hook>
+
+<%= render :partial => 'shared/logo' %>
+<%= render :partial => 'spree/shared/search' %>
+
+<nav>
+
+<%= link_to t('products'), products_path, :class => 'products' %>
+
+<% if current_user %>
+  <%= link_to t('my_account'), account_path, :class => "my.account" %>
+  <%= link_to t('logout'), destroy_user_session_path, :class => "logout.account" %>
+<% else %>
+  <%= link_to t('log_in'), login_path, :class => "login.account" %>
+<% end %>
+
+<%= link_to_cart %>
+
+</nav>
+</header>

@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Vulcanknife2::Application.config.secret_token = 'd0aeacab18e8178c56d533b84544b098c302e21eae859c0f97d5db7e619b38963d84a1516e08f114cb7933af29020407a9ecca8737dc37dee2214b3d7adf5333'
+Vulcanknife2::Application.config.secret_token = 'd425865827535841b0b4638fbda8c1772fbd33ef83e15dfb259d657975ddaa5bb1fb3cea40e3cdd7a4ccd33bdbdbdf3ab256e13db1f9bf17b2a7b20ec66811ad'
