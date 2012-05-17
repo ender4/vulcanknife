@@ -1,4 +1,4 @@
-class Spree::HomepageController < Spree::BaseController
+class HomepageController < Spree::BaseController
   helper 'spree/products'
 
   def show

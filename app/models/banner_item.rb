@@ -12,7 +12,7 @@ class BannerItem < ActiveRecord::Base
   has_attached_file :icon,
     :storage => :s3,
     :s3_credentials => "config/aws.yml",
-    :styles => { :mini => '32x32>', :normal => '128x128>' },
+    :styles => { :mini => '48x32>', :thumb => '96x64>', :normal => '384x256>' },
     :default_style => :mini,
     :url => '/banner_icons/:id/:style/:basename.:extension',
     :path => 'images/banner_icons/:id/:style/:basename.:extension',

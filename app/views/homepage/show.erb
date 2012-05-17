@@ -1,25 +1,26 @@
-<div id="banner" role="banner">
+<% content_for :banner do %>
   <section>
-    <div>
+    <div class="v_carousel_content">
       <ul>
         <% @banner_items.each_with_index do |item, i| %>
-        <li id="b<%= i + 1 %>">
-          <%= link_to item.link do %>
-            <%= image_tag item.icon.url(:normal, false), :width => 128, :height => 128, :alt => (item.alt || item.name) %>
-          <% end %>
-        </li>
+          <li>
+            <%= link_to item.link do %>
+              <%= image_tag item.icon.url(:normal, false), :width => 128, :height => 128, :alt => (item.alt || item.name) %>
+            <% end %>
+          </li>
         <% end  %>
       </ul>
     </div>
   </section>
+<% end %>
 
-  <nav id="banner-nav">
-    <ul>
-      <li class="first"><a href="#">&laquo;</a></li>
+<% content_for :bannernav do %>
+  <ul>
+    <li class="v_carousel_prev"><a href="#">&laquo;</a></li>
       <% @banner_items.each_with_index do |item, i| %>
-      <li <% if i == 1 %>class="current"<% end %> id="b<%= i %>_handle><a href="#"><%= item.name %></a></li>
+        <li class="v_carousel_nav<% if i == 1 %>.v_c_current<% end %>"><a href="#"><%= item.name %></a></li>
       <% end %>
-      <li class="last"><a href="#">&raquo;</a></li>
-    </ul>
-  </nav>
-</div>
+    <li class="v_carousel_next"><a href="#">&raquo;</a></li>
+  </ul>
+<% end %>
+

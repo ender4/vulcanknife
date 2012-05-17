@@ -85,7 +85,7 @@ body {
   padding-top: 20px;
   margin: 0px;
   
-  & > #logo {
+  & > a#logo {
     font-weight: bold;
     font-size: 2em;
     margin-right: 20px;
@@ -169,7 +169,7 @@ body {
   margin: 0px;
   padding: 0px;
   background: transparent;
-  height: 170px;
+  /*height: 170px;*/
     
   & > * {
     display: inline;
@@ -179,10 +179,17 @@ body {
   
   & > #banner-text > h1 {
     color: $c-prim;
+    font-size: 3em;
     text-shadow: 0px 0px 10px black;
     padding-left: 40px;
     padding-top: 20px;
   }
+}
+
+#bannernav li {
+  display: inline;
+  float: left;
+  padding-left: 20px;
 }
 
 #footer-wrapper {
