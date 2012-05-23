@@ -1,0 +1,9 @@
+<% get_taxonomies.each do |taxonomy| %>
+  <div class="v-taxonomy-list">
+    <%= link_to seo_url(taxonomy.root) do %>
+      <h6 class='taxonomy-root'><%= t(:shop_by_taxonomy, :taxonomy => taxonomy.name.singularize) %></h6>
+    <% end %>
+    <%= taxons_tree(taxonomy.root, @taxon, Spree::Config[:max_level_in_taxons_menu] || 1) %>
+  </div>
+<% end %>
+

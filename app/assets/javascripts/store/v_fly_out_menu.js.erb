@@ -1,0 +1,25 @@
+$(document).ready(function($) {
+  // add sub menus and move extra items to sub menus
+  $('.v-taxonomy-list > ul').each(function() {
+    $(this).find('li:gt(<%= Spree::Config[:max_taxons_in_menu] - 1 %>)').addClass('v-flyout-item');
+  });
+  $('.v-taxonomy-list > ul > .v-flyout-item').parent('ul').append('<li class="v-flyout-menu"><ul class="v-flyout-menu-ul"></ul></li>');
+  $('.v-taxonomy-list > ul > .v-flyout-item').parents('.v-taxonomy-list').addClass('v-has-flyout-menu');
+  $('.v-taxonomy-list > ul > .v-flyout-item').each(function() {
+    $(this).appendTo($(this).parent('ul').find('li.v-flyout-menu ul.v-flyout-menu-ul'));
+  });
+  
+  // hide sub menus
+  $('.v-flyout-menu').css({display: "none"});
+  
+  // show menus on hover
+  $('.v-taxonomy-list').hover(function() {
+    $(this).addClass('v-add-position');
+    $(this).find('.v-flyout-menu:first').css({visibility: "visible", display: "none"}).show(400);
+    
+  }, function() {
+    $(this).find('.v-flyout-menu:first').css({visibility: "hidden"}).hide(400);
+    $(this).removeClass('v-add-position');
+  });
+});
+

@@ -5,9 +5,9 @@ $(document).ready(function () {
     btnGo: $('#bannernav .v_carousel_nav'),
     activeClass: 'v_c_current',
     visibleClass: 'v_c_vis',
-    auto: true,
-    timeout: 3000,
-    speed: 1000
+    auto: 3000,
+    speed: 1000,
+    visible: 3
   });  
 });
 

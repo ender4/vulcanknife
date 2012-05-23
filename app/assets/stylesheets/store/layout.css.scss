@@ -5,10 +5,11 @@ $bg-prim: white;
 $bg-sec: #336699;
 $bg-ter: #333333;
 $bg-quar: #224466;
+$bg-pent: #eeeeee;
 $br-prim: #999999;
 $br-sec: #00ADEE;
 
-
+/*
 $light-main: black;
 $light-alt: #00ADEE;
 $light-bg: white;
@@ -18,10 +19,11 @@ $dark-main: white;
 $dark-alt: #00ADEE;
 $dark-bg: #333;
 $dark-border: 1px solid #666;
+$selected-color: #EEAD00;
+*/
 
 $image-product-height: 240px;
 
-$selected-color: #EEAD00;
 
 @mixin rounded($a: 10px, $b: 10px, $c: 10px, $d: 10px) {
   border-radius: $a $b $c $d;
@@ -33,11 +35,11 @@ $selected-color: #EEAD00;
   border-radius: $radius;
   -moz-border-radius: $radius;
   -webkit-border-radius: $radius;
-}*/
+}
 
 @mixin selected {
   color: $selected-color !important;
-}
+}*/
 
 @mixin border($c: $br-prim) {
   border: 1px solid $c;
@@ -186,10 +188,24 @@ body {
   }
 }
 
-#bannernav li {
-  display: inline;
-  float: left;
-  padding-left: 20px;
+#bannernav {
+  & ul {
+    display: table;
+    width: 100%;
+    
+    & > li {
+      display: table-cell;
+      /*float: left;
+      padding-left: 20px;*/
+      
+      & > a {
+        display: block;
+        text-align: center;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
 #footer-wrapper {
@@ -244,32 +260,84 @@ body {
   padding-bottom: 5px;
 }
 
-[data-hook='taxonomies'], #taxonomies[data-hook] {
 
-  & > a.toggle > h6 {
-    background: url('button_minus_blue_20x20.png') no-repeat scroll right center transparent;
-
-  } 
-
-  & > a.toggle.plus > h6 {
-    background: url('button_plus_blue_20x20.png') no-repeat scroll right center transparent;
-  }
   
-  & > a, & > a > h6, & > a:focus, & > a:focus > h6, & > a:hover, & > a:hover > h6, & > a:active, & > a:active > h6 {
-    /*border-bottom: 1px dotted #DEDEDE !important;*/
-    outline: none;
-    border-bottom: 1px dotted #DEDEDE;
-  }
+a:focus, a:focus > h6, a:hover, a:hover > h6, a:active, a:active > h6 {
+  color: $c-ter !important;
 }
-  
-/*a:focus, a:focus > h6, a:hover, a:hover > h6, a:active, a:active > h6 {
-  @include selected;
-}*/
 
 nav.pagination {
   display: inline;
   float: left;
   clear: both;
+}
+
+[data-hook='taxonomies'], #taxonomies[data-hook] {
+  
+  border: 0;
+  outline: 0;
+  
+  & .v-add-position {
+    position: relative;
+  }
+  
+  & .v-taxonomy-list {
+    @include rounded();
+    &.v-has-flyout-menu:hover {
+      @include rounded(10px, 0px, 0px, 10px);
+    }
+  }
+  
+  & .v-flyout-menu {
+    @include rounded(0px, 10px, 10px, 10px);
+    
+	  -moz-column-width: 150px;
+	  -moz-column-gap: 20px;
+	  -webkit-column-width: 150px;
+	  -webkit-column-gap: 20px;
+	  height: 250px;
+	  width: 400px;
+  }
+  
+  & .v-taxonomy-list, & .v-flyout-menu {
+    background-color: $bg-pent;
+    padding: 5px;
+    margin-bottom: 10px;
+    
+    & ul li a {
+      &, &:link, &:visited {
+        color: $c-sec;
+      }
+    }
+    
+    & > a > h6 {
+      &:hover, &:focus, &:active {
+        color: $c-sec !important;
+      }
+      
+      &, &:link, &:visited {
+        color: $c-ter;
+      }
+    }
+  }
+
+  & .v-flyout-menu {
+    z-index: 100;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 220px;
+    padding-left: 20px !important;
+    list-style: none;
+    
+    & li {
+      list-style: disc;
+    }
+  }
+  
+  .taxons-list {
+    margin-bottom: 0;
+  }
 }
 
 

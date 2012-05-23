@@ -34,6 +34,8 @@ module ApplicationHelper
       if FileTest.exists?(Rails.root.join "app/assets/images/store/taxon/#{@product_group.permalink}-bg.jpg")
         @banner_image = "store/taxon/#{@product_group.permalink}-bg.jpg"
       end
+    elsif @product.present?
+      @banner_name = @product.name
     end
   end  
 end
