@@ -3,7 +3,7 @@
     <div class="v_carousel_content">
       <ul>
         <% @banner_items.each_with_index do |item, i| %>
-          <li>
+          <li class="v-carousel-image" id="v-carousel-index-<%= i %>">
             <%= link_to item.link do %>
               <%= image_tag item.icon.url(:normal, false), :width => 320, :height => 240, :alt => (item.alt || item.name) %>
             <% end %>
@@ -16,11 +16,19 @@
 
 <% content_for :bannernav do %>
   <ul>
-    <li class="v_carousel_prev"><a href="#">&laquo;</a></li>
+    <li class="v-carousel-prev"><a href="#">&laquo;</a></li>
       <% @banner_items.each_with_index do |item, i| %>
-        <li class="v_carousel_nav"><a href="#"><%= item.name %></a></li>
+        <li class="v-carousel-nav v-carousel-index-<%= i %>"><a href="#"><%= item.name %></a></li>
       <% end %>
-    <li class="v_carousel_next"><a href="#">&raquo;</a></li>
+    <li class="v-carousel-next"><a href="#">&raquo;</a></li>
   </ul>
 <% end %>
+
+<% content_for :sidebar do %>
+  <div data-hook="taxon_sidebar_navigation">
+    <%= render :partial => "spree/shared/taxonomies" %>
+  </div>
+<% end %>
+
+<h1>Placeholder for front page content</h1>
 

@@ -31,6 +31,21 @@ $image-product-height: 240px;
   -webkit-border-radius: $a $b $c $d;
 }
 
+@mixin box-sizing($type: border-box) {
+  -webkit-box-sizing: $type;
+  -moz-box-sizing: $type;
+  -ms-box-sizing: $type;
+  -o-box-sizing: $type;
+  box-sizing: $type;
+}
+
+@mixin columns($width: 120px, $gap: 10px) {
+  -moz-column-width: $width;
+  -moz-column-gap: $gap;
+  -webkit-column-width: $width;
+  -webkit-column-gap: $gap;
+}
+
 /*@mixin rounded($radius: 10px) {
   border-radius: $radius;
   -moz-border-radius: $radius;
@@ -203,6 +218,13 @@ body {
         text-align: center;
         margin-left: 10px;
         margin-right: 10px;
+        
+        &.v_c_current {
+          &, &:link, &:visited {
+            color: $c-prim;
+            text-shadow: 0 0 5px black;
+          }
+        }
       }
     }
   }
@@ -215,12 +237,32 @@ body {
     /*background-color: $bg-ter;*/
     color: $c-prim;
     width: 960px;
-    display: block;
+    display: table;
     position: relative;
     background: none repeat scroll 0 0 transparent;
     vertical-align: baseline;
     border: none;
     margin-bottom: 0px;
+    width: 100%;
+    
+    & h3 {
+      color: $c-prim;
+    }
+    
+    & p {
+      color: $bg-pent;
+    }
+  
+    & > div {
+      @include box-sizing;
+      padding: 10px;
+      display: table-cell;
+      width: 33%;
+    }
+    
+    & .footer-content, & #footer-pages {
+      margin-top: 10px;
+    }
   }
 }
 
@@ -277,32 +319,46 @@ nav.pagination {
   border: 0;
   outline: 0;
   
-  & .v-add-position {
-    position: relative;
+  & .taxonomy-root {
+    border-bottom: 0;
   }
-  
+    
   & .v-taxonomy-list {
     @include rounded();
-    &.v-has-flyout-menu:hover {
-      @include rounded(10px, 0px, 0px, 10px);
-    }
+    margin-bottom: 10px;
+    position: relative;
+
+    /*&.v-has-flyout-menu {
+      &:hover {
+        @include rounded(10px, 0px, 0px, 10px);
+      }
+    }*/
   }
   
   & .v-flyout-menu {
-    @include rounded(0px, 10px, 10px, 10px);
+    @include rounded(0px, 10px, 10px, 0px);
+    @include box-sizing;
+    @include columns;
     
-	  -moz-column-width: 150px;
-	  -moz-column-gap: 20px;
-	  -webkit-column-width: 150px;
-	  -webkit-column-gap: 20px;
-	  height: 250px;
-	  width: 400px;
+    height: 100%;
+    /*width: 400px;*/
+    z-index: 100;
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 210px;
+    /*padding-left: 20px !important;
+    list-style: none;*/
+    
+    & li {
+      list-style: disc;
+    }
   }
   
   & .v-taxonomy-list, & .v-flyout-menu {
     background-color: $bg-pent;
     padding: 5px;
-    margin-bottom: 10px;
     
     & ul li a {
       &, &:link, &:visited {
@@ -321,22 +377,15 @@ nav.pagination {
     }
   }
 
-  & .v-flyout-menu {
-    z-index: 100;
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 220px;
-    padding-left: 20px !important;
-    list-style: none;
-    
-    & li {
-      list-style: disc;
-    }
+  & .taxons-list {
+    margin-bottom: 0;
   }
   
-  .taxons-list {
-    margin-bottom: 0;
+  & .v-flyout-menu-more {
+    display: block;
+    text-align: center;
+    color: $c-ter;
+    font-weight: bold;
   }
 }
 

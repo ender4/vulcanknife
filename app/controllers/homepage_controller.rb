@@ -4,6 +4,7 @@ class HomepageController < Spree::BaseController
   def show
     @taxonomies = Spree::Taxonomy.all
     @banner_items = BannerItem.visible
+    
   end
 
 end
