@@ -1,8 +1,3 @@
-<% unless @v_banner_shown %>
-  <%= render 'shared/product_banner' %>
-  <% @v_banner_shown = 1 %>
-<% end %>
-
 <% reset_cycle('default') %>
 <% products.each do |product| %>
   <% if ((Spree::Config[:show_available_in_store_only_products] && product.available_in_store_only) || ((Spree::Config[:show_zero_stock_products] || product.has_stock?) && !product.available_in_store_only)) %>

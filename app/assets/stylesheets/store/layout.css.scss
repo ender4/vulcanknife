@@ -60,16 +60,7 @@ $image-product-height: 240px;
   border: 1px solid $c;
 }
 
-a {
-  text-decoration: none;
-  
-  &:hover, &:focus, &:active {
-    color: $c-ter;
-  }
-  &:link, &:visited {
-    color: $c-sec;
-  }
-}
+
 
 body {
   /*background: url('body-bg-01.png') repeat-x scroll left top $bg-prim;*/
@@ -201,6 +192,17 @@ body {
     padding-left: 40px;
     padding-top: 20px;
   }
+  
+  & .v-carousel-content, & .v-carousel-content img {
+    height: 240px;
+    width: 960px;
+  }
+}
+
+@mixin nav-highlight() {
+  color: $c-prim !important;
+  text-shadow: 0 0 5px black;
+  font-weight: bold;
 }
 
 #bannernav {
@@ -212,18 +214,31 @@ body {
       display: table-cell;
       /*float: left;
       padding-left: 20px;*/
+      padding-top: 2px;
+      padding-bottom: 2px;
       
       & > a {
         display: block;
         text-align: center;
         margin-left: 10px;
         margin-right: 10px;
+        font-weight: bold;
+        border: 1px solid transparent;
+        outline: none;
+      }
+      
+      &.v-carousel-current > a {
+        &, &:link, &:visited {
+          @include nav-highlight();
+        }
+      }
+      & > a {
+        &:hover, &:focus, &:active {
+          @include nav-highlight();
+        }
         
-        &.v_c_current {
-          &, &:link, &:visited {
-            color: $c-prim;
-            text-shadow: 0 0 5px black;
-          }
+        &:focus, &:active {
+          border: 1px dotted $c-prim;
         }
       }
     }
@@ -304,10 +319,6 @@ body {
 
 
   
-a:focus, a:focus > h6, a:hover, a:hover > h6, a:active, a:active > h6 {
-  color: $c-ter !important;
-}
-
 nav.pagination {
   display: inline;
   float: left;
@@ -323,23 +334,99 @@ nav.pagination {
     border-bottom: 0;
   }
     
+  & li {
+    margin-left: 10px;
+    list-style: disc;
+  }
+  
+  & .taxons-list {
+    padding-left: 0px;
+  }
+
+  & .v-taxonomy-list, & .v-flyout-menu {
+    background-color: $bg-pent;
+    
+    & ul li a {
+      &, &:link, &:visited {
+        color: $c-sec;
+      }
+    }
+  }
+
   & .v-taxonomy-list {
     @include rounded();
     margin-bottom: 10px;
-    position: relative;
-
+    
+    & > .v-taxonomy-wrapper {
+      position: relative;
+    }
     /*&.v-has-flyout-menu {
       &:hover {
         @include rounded(10px, 0px, 0px, 10px);
       }
     }*/
+    & > .v-taxonomy-wrapper {
+      & > ul, & > h6 > a {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      
+      & > h6 > a {
+        &:hover, &:focus, &:active {
+          color: $c-sec !important;
+        }
+        
+        &, &:link, &:visited {
+          color: $c-ter;
+        }
+      }
+      
+      & a {
+        display: block;
+      }
+      
+      & > .taxons-list {
+        padding-left: 30px;
+        padding-bottom: 10px;
+      }
+      
+      & > h6 {
+        margin-bottom: 0px;
+        & > a {
+          padding-top: 5px;
+          padding-bottom: 5px;
+        }
+      }
+    }
+    
+    & .v-flyout-menu-more {
+      @include rounded(0px, 0px, 5px, 5px);
+      @include box-sizing();
+      
+      padding-top: 5px;
+      padding-bottom: 5px;
+      background-color: $c-ter;
+      color: $c-prim;
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-weight: bold;
+      cursor: pointer;
+      border: 1px solid transparent;
+      box-shadow: none;
+      
+      &:focus, &:active {
+        border: 1px dotted $bg-ter;
+      }
+      
+      &:hover { 
+        background-color: $c-sec;
+      }
+    }
   }
   
-  & .v-flyout-menu {
-    @include rounded(0px, 10px, 10px, 0px);
+  & .v-flyout-wrapper {
     @include box-sizing;
-    @include columns;
-    
     height: 100%;
     /*width: 400px;*/
     z-index: 100;
@@ -348,45 +435,34 @@ nav.pagination {
     top: 0;
     bottom: 0;
     left: 210px;
-    /*padding-left: 20px !important;
-    list-style: none;*/
+    background: red;
+ }
+  
+  & .v-flyout-menu {
+    @include rounded(0px, 10px, 10px, 0px);
+    @include box-sizing;
+    @include columns;
     
-    & li {
-      list-style: disc;
-    }
+    z-index: 100;
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 210px;
+    
+    height: 100%;
+    /*display: none;*/
+    padding-left: 30px !important;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    list-style: none;
+    
   }
   
-  & .v-taxonomy-list, & .v-flyout-menu {
-    background-color: $bg-pent;
-    padding: 5px;
-    
-    & ul li a {
-      &, &:link, &:visited {
-        color: $c-sec;
-      }
-    }
-    
-    & > a > h6 {
-      &:hover, &:focus, &:active {
-        color: $c-sec !important;
-      }
-      
-      &, &:link, &:visited {
-        color: $c-ter;
-      }
-    }
-  }
-
   & .taxons-list {
     margin-bottom: 0;
   }
   
-  & .v-flyout-menu-more {
-    display: block;
-    text-align: center;
-    color: $c-ter;
-    font-weight: bold;
-  }
 }
 
 
@@ -404,5 +480,14 @@ nav.pagination {
 [data-hook='nav-bar'] > li, #nav-bar[data-hook] > li {
   float: left;
 }*/
-
+a {
+  text-decoration: none;
+  
+  &:hover, &:focus, &:active {
+    color: $c-ter !important;
+  }
+  &:link, &:visited {
+    color: $c-sec;
+  }
+}
 

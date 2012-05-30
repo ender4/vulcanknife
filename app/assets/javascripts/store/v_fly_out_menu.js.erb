@@ -1,34 +1,30 @@
 $(document).ready(function($) {
   // add sub menus and move extra items to sub menus
-  $('.v-taxonomy-list > ul').each(function() {
+  $('.v-taxonomy-wrapper > ul').each(function() {
     $(this).find('li:gt(<%= Spree::Config[:max_taxons_in_menu] - 1 %>)').addClass('v-flyout-item');
   });
-  $('.v-taxonomy-list > ul > .v-flyout-item').parents('.v-taxonomy-list').addClass('v-has-flyout-menu');
-  $('.v-has-flyout-menu').append('<span class="v-flyout-menu-more">MORE &raquo;</span><ul class="v-flyout-menu"></ul>');
-  $('.v-has-flyout-menu > ul > .v-flyout-item').each(function() {
+  $('.v-taxonomy-wrapper > ul > .v-flyout-item').parents('.v-taxonomy-list').addClass('v-has-flyout-menu');
+  $('.v-has-flyout-menu').append('<button class="v-flyout-menu-more">MORE &raquo;</button>');
+  $('.v-has-flyout-menu > .v-taxonomy-wrapper').append('<ul class="v-flyout-menu"></ul>');
+  $('.v-has-flyout-menu > .v-taxonomy-wrapper > ul > .v-flyout-item').each(function() {
     $(this).appendTo($(this).parents('.v-has-flyout-menu').find('.v-flyout-menu'));
   });
   
   // hide sub menus
   $('.v-flyout-menu').css({display: "none"});
   
-  // correct width and height of sub menus
-  //$('.v-flyout-menu').each(function() {
-  //  var count = $(this).find('.v-flyout-item').length;
-  //  var cols = Math.ceil(count/12);
-  //  var w = 130 * cols;
-  //  $('this').css({width: w.toString()});
-  //});
+  // correct width of sub menus
+  $('.v-has-flyout-menu').each(function() {
+    var count = $(this).find('.v-flyout-menu .v-flyout-item').length;
+    var p_count = $(this).find('.taxons-list').filter(':first').find('li a').length + 1;
+    var cols = Math.ceil(count/p_count);
+    var w = Math.floor(150 * cols);
+    $(this).find('.v-flyout-menu').css({width: w.toString()});
+  });
   
-  // show menus on hover
-  $('.v-has-flyout-menu').hover(function() {
-    var count = $(this).find('.v-flyout-item').length;
-    var cols = Math.ceil(count/12);
-    var w = 130 * cols;
-    $(this).find('.v-flyout-menu:first').css({width: w.toString()}).show("slide", 400);
-    
-  }, function() {
-    $(this).find('.v-flyout-menu:first').hide("slide", 400);
+  // show menus on click
+  $('.v-flyout-menu-more').click(function() {
+    $(this).parents('.v-has-flyout-menu').find('.v-flyout-menu').toggle("slide", null, 400);
   });
 });
 
