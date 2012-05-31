@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.3'
 gem 'jquery-rails', '2.0.0'
-gem 'spree', :git => 'http://github.com/spree/spree', :branch => '1-1-stable'
+gem 'spree', '1.1.1'
 gem 'spree_static_content', :git => 'http://github.com/spree/spree_static_content', :branch => 'master'
 gem 'spree_editor', :git => 'git://raw.github.com/spree/spree_editor.git'
 gem 'tinymce-rails', '3.4.9'
