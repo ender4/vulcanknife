@@ -34,4 +34,9 @@ Vulcanknife2::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+  
+  config.to_prepare do
+    Spree::Core::Search::Base.send(:include, SkuSearch)
+  end
+
 end

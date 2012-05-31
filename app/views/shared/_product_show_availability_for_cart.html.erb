@@ -1,5 +1,5 @@
-<% if @product.available_in_store_only %>
-  <%= content_tag('strong', t(:available_in_store_only)) %>
+<% if @product.not_available? %>
+  <%= content_tag('strong', t(@product.availability)) %>
 <% elsif @product.has_stock? || Spree::Config[:allow_backorders] %>
   <%= number_field_tag (@product.has_variants? ? :quantity : "variants[#{@product.master.id}]"),
     1, :class => 'title', :in => 1..@product.on_hand %>

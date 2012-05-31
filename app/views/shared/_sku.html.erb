@@ -1,0 +1,11 @@
+<ul id='product-sku'>
+  <% unless @product.sku.blank? %>
+    <li id='master'>Master SKU: <%= @product.sku %></li>
+  <% end %>
+  <% @product.variants.each_with_index do |v, i| %>
+    <% unless v.sku.blank? %>
+      <li class='variant-sku <%= v.id %>'>Variant SKU: <%= v.sku %></li>
+    <% end %>
+  <% end %>
+</ul>
+

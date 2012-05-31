@@ -27,7 +27,7 @@ module ApplicationHelper
       @banner_name = raw @taxon.name
       @banner_description = @taxon.description
       if @taxon.icon?
-        @banner_image = @taxon.icon.url(:normal, false)
+        @banner_image = @taxon.icon.url :normal
       end
     elsif @product_group.present?
       @banner_name = @product_group.name

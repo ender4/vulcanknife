@@ -2,13 +2,17 @@
   <% @v_banner_shown = 1 %>
   <% content_for :banner do %>
     <% load_banner_data %>
-    <div id='banner-text'>
-      <h1 class="banner-name"><%= @banner_name %></h1>
-      <% if @banner_description %>
-      <p class="banner-description"><%= @banner_description %></p>
-      <% end %>
+    <div id='banner-wrapper'>
+      <section id='banner-text-wrapper'>
+        <h1 id='banner-name'><%= @banner_name %></h1>
+        <% if @banner_description %>
+          <p id='banner-description'><%= @banner_description %></p>
+        <% end %>
+      </section>
+      <section id='banner-image-wrapper'>
+        <%= image_tag @banner_image, :id => 'banner-image' %>
+      </section>
     </div>
-    <%= image_tag @banner_image, :class => "banner-image" %>
   <% end %>
 <% end %>
 
